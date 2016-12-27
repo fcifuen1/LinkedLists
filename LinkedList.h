@@ -31,4 +31,6 @@ class LinkedList
     Node<T>* tail;
 };
 
+#include "LinkedList.cpp"
+
 #endif
