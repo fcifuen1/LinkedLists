@@ -16,16 +16,19 @@ template <class T>
 bool LinkedList<T>::empty() const { return (head == NULL && tail == NULL); }
 
 template <class T>
-void LinkedList<T>::insert(T data)
+void LinkedList<T>::insertHead(T data)
 {
-    Node<T> *newNode = (Node*)malloc(sizeof(Node<T>));
+    Node<T> *newNode = (Node<T>*)malloc(sizeof(Node<T>));
     
     newNode->data = data;
     newNode->next = NULL;
     
     // Empty list
-    if (head == NULL)
+    if (empty())
+    {
         head = newNode;
+        tail = head;
+    }
     
     // Nonempty list
     else
@@ -35,6 +38,29 @@ void LinkedList<T>::insert(T data)
     }
 }
     
+template <class T>
+void LinkedList<T>::insertTail(T data)
+{
+    Node<T> *newNode = (Node<T>*)malloc(sizeof(Node<T>));
+    
+    newNode->data = data;
+    newNode->next = NULL;
+    
+    // Empty list
+    if (empty())
+    {
+        head = newNode;
+        tail = head;
+    }
+    
+    // Nonempty list
+    else
+    {
+        tail->next = newNode;
+        tail = tail->next;
+    }
+}
+
 template <class T>    
 void LinkedList<T>::insertNth(int n)
 {
@@ -101,4 +127,94 @@ void LinkedList<T>::clear()
   }
 }
 
+template <class T>
+void LinkedList<T>::deleteHead()
+{
+    if (!empty())
+    {
+        Node<T> *del = head;
+        
+        // Single node list
+        if (size == 1)
+        {
+            head = NULL;
+            tail = NULL;
+            
+            delete del;
+            del = NULL;
+        }
+        
+        // Multinode list
+        else if (size > 1)
+        {
+            head = head->next;
+            delete del;
+            del = NULL;
+        }
+    }
+}
+
+template <class T>
+void LinkedList<T>::deleteTail()
+{
+    if (!empty())
+    {
+        Node<T> *cur = head;
+        Node<T> *prev = NULL;
+        
+        // Single node list
+        if (cur == tail)
+        {
+            head = NULL;
+            tail = NULL;
+            
+            delete cur;
+            cur = NULL;
+            
+            return;
+        }
+        
+        // Multinode list
+        while (cur != tail)
+        {
+            prev = cur;
+            cur = cur->next;
+        }
+        
+        prev->next = NULL;
+        tail = prev;
+        delete cur;
+        cur = NULL;
+    }
+}
+
+template <class T>
+void LinkedList<T>::deleteNth(int n)
+{
+    if (head == NULL)
+       return head;
+    
+    Node<T> *cur = head;
+    Node<T> *prev = NULL;
+    
+    if (n != 0)
+    {
+        for (int i = 0; i < n; ++i)
+        {
+            prev = cur;
+            cur = cur->next;
+        }
+    
+        prev->next = cur->next;
+        delete cur;
+        cur = NULL;
+    }
+ 
+    else
+    {
+        head = cur->next;
+        delete cur;
+    }
+}
+  
 #endif
