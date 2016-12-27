@@ -53,7 +53,7 @@ void LinkedList<T>::insertNth(int n)
     }
         
     // Go to n'th position
-    for (int i = 0; i < position; ++i)
+    for (int i = 0; i < n; ++i)
     {
         prev = cur;
         cur = cur->next;
@@ -61,7 +61,7 @@ void LinkedList<T>::insertNth(int n)
     
     newNode->next = cur;
     
-    if (position == 0)
+    if (n == 0)
         head = newNode;
     
     if (prev != NULL)
