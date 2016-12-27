@@ -17,10 +17,10 @@ class LinkedList
     bool empty() const;
   
     // Inserts a node at the head
-    void insertHead();
+    void insertHead(T data);
   
     // Inset a node at the tail
-    void insertTail();
+    void insertTail(T data);
     
     // Inserts a node into the nth position 
     void insertNth(int n);
