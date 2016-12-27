@@ -1,5 +1,12 @@
 /*
-  Delete Node at a given position in a linked list 
+  Print the elements of a list in reverse order.
+  If the list is NULL, print nothing.
+  
+  Ex: 1 -> 2 -> 3 -> NULL outputs 
+  3
+  2
+  1
+  
   Node is defined as
 
   struct Node
