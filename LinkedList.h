@@ -17,13 +17,25 @@ class LinkedList
     bool empty() const;
   
     // Inserts a node at the head
-    void insert();
+    void insertHead();
+  
+    // Inset a node at the tail
+    void insertTail();
     
     // Inserts a node into the nth position 
     void insertNth(int n);
   
     // Erases a list object
     void clear();
+  
+    // Deletes the node at the head
+    void deleteHead();
+  
+    // Deletes the node at the tail
+    void deleteTail();
+  
+    // Deletes the node at the nth position
+    void deleteNth(int n);
   
   private:
     int size;
